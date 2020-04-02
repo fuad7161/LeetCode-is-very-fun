@@ -1,0 +1,25 @@
+//https://leetcode.com/explore/featured/card/30-day-leetcoding-challenge/528/week-1/3284/
+class Solution {
+public:
+    bool isHappy(int n) {
+        map<int,bool>vis;
+        vis[n] = true;
+        bool f = true;
+        int x,t=0;
+        while(1){
+            x = n%10;
+            t += x*x;
+            n/=10;
+            if(n==0){
+                n = t;
+                t = 0;
+                if(n==1) return true;
+                if(!vis[n]){
+                    vis[n] = true;
+                }else if(vis[n]== true){
+                    return false;
+                }
+            }
+        }
+    }
+};
