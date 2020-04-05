@@ -1,0 +1,46 @@
+//c++
+class Solution {
+public:
+    
+    string add(string s){
+	reverse(s.begin(),s.end());
+	int cry = 1;
+	for(int i=0;i<s.size();i++){
+		if(cry){
+			s[i]++;
+			if(s[i]=='2'){
+				s[i] = '0';
+			}else cry  = 0;
+		}
+	}
+	if(cry) s+='1';
+	reverse(s.begin(), s.end());
+	return s;
+}
+    
+    int numSteps(string s) {
+	int op = 0;
+
+	while(s.size()>1){
+		op++;
+		if(s.back()=='0'){
+			s.pop_back();
+		}else{
+			s = add(s);
+		}
+	}
+	return op;
+    }
+};
+#python
+
+class Solution:
+    def numSteps(self, s: str) -> int:
+        n = int(s,2)
+        r = 0
+        while n != 1:
+            if n&1 : n+=1
+            else: n>>=1
+            r+=1
+        return r
+                
