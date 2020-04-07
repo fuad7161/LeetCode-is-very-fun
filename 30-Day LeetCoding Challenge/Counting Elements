@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int countElements(vector<int>& arr) {
+        map<int,int>m;
+        set<int>s;
+        for(auto i: arr){
+            m[i]++;
+            s.insert(i);
+        }
+        int cnt = 0;
+        for(auto i: s){
+            if(m[i+1])
+                cnt+=m[i];
+        }
+        return cnt;
+    }
+};
