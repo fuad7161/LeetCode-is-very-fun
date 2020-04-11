@@ -1,0 +1,49 @@
+class Solution {
+    bool isPalindrome(string s){
+        int n = s.length();
+        for(int i=0;i<=n/2;i++){
+            if(s[i]!=s[n-1-i]) return false;
+        }
+        return true;
+    }
+    
+    int good(int l, string s){
+        int n = s.length();
+        for(int i=0;i+l<=n;i++){
+            if(isPalindrome(s.substr(i,l))) {
+                return i;
+            }
+        }
+        return -1;
+    }
+public:
+    string longestPalindrome(string s) {
+        int best_l =  0;
+        string best_s = "";
+        int n = s.length();
+        for(int p: {0,1}){
+            int low = 1;
+            int high = n;
+            if(low%2 != p) low++;
+            if(high%2 != p) high--;
+            //cout<<"ok"<<endl;
+            while(low<=high){
+                //cout<<low<<" "<<high<<endl;
+                int mid = (low+high)/2;
+                if(mid%2 != p) mid++;
+                if(mid>high) break;
+                int tmp = good(mid,s);
+                if(tmp != -1){
+                    if(mid>best_l){
+                        best_l = mid;
+                        best_s = s.substr(tmp,mid);
+                        }
+                    low = mid + 2;
+                }else {
+                    high = mid - 2;
+                }
+            }
+        }
+        return best_s;
+    }
+};
