@@ -1,0 +1,23 @@
+class Solution {
+public:
+    vector<int> processQueries(vector<int>& q, int m) {
+        vector<int>v;
+        int n = q.size();
+        int a[m+1];
+        for(int i=0;i<m;i++){
+            a[i+1] = i;
+        }
+        for(int i=0;i<n;i++){
+            int x = q[i];
+           // cout<<a[x]<<" ";
+            v.push_back(a[x]);
+            for(int j=0;j<m;j++){
+                if(a[j+1]<a[x]){
+                    a[j+1]++;
+                }
+            }
+            a[x] = 0;
+        }
+        return v;
+    }
+};
