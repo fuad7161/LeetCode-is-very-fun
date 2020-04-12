@@ -1,0 +1,30 @@
+class Solution {
+    
+    bool mach(string s,string ss){
+        return s == ss;
+    }
+    
+public:
+    vector<string> stringMatching(vector<string>& v) {
+        int n = v.size();
+        vector<string>ans;
+        map<string,int>m;
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                int ln = v[i].size();
+                int cl = v[j].size();
+                bool got = 0;
+                if(ln<=cl&&i!=j){
+                    for(int z=0;z+ln<=cl;z++){
+                        if(mach(v[j].substr(z,ln),v[i])){
+                            got = 1;
+                            m[v[i]] = 1;
+                        }
+                }if(got) break;
+        }
+        for(string i:v){
+            if(m[i]) ans.push_back(i);
+        }
+        return ans;
+    }
+};
