@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int fourSumCount(vector<int>& a, vector<int>& b, vector<int>& c, vector<int>& d) {
+        map<int,int>m;
+        int cnt = 0;
+        int n  = a.size();
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                m[a[i]+b[j]]++;
+            }
+        }
+        
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                int x = -(c[i]+d[j]);
+                cnt+=m[x];
+            }
+        }
+        return cnt;
+    }
+};
