@@ -1,0 +1,28 @@
+class Solution {
+public:
+    int findContentChildren(vector<int>& g, vector<int>& s) {
+        int gL = g.size();
+        int sL = s.size();
+        
+        sort(g.begin(),g.end());
+        sort(s.begin(), s.end());
+        
+        //found lower bound
+        int here  = 0;
+        for(int i=gL-1;i>=0&&sL>0;i--){
+            if(g[i]<=s[sL-1]){
+                here  = i;
+                break;
+            }
+        }
+        int cnt=0;
+        for(int i=here,j=sL-1;i>=0&&j>=0;){
+            if(g[i]<=s[j]){
+                i--;j--;
+                cnt++;
+            }
+            else i--;
+        }
+        return cnt;
+    }
+};
