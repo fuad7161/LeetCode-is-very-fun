@@ -1,0 +1,22 @@
+class Solution {
+public:
+    bool repeatedSubstringPattern(string s) {
+        int n = s.size();
+        int m = n;
+        while(n>1){
+                n-=1;
+                if(m%n) continue;
+                bool f = true;
+                string ss = s.substr(0,n);
+                for(int i=n;i+n<=m;i+=n){
+                    if(s.substr(i,n)!=ss){
+                       // cout<<s.substr(i,n);
+                        f = false;
+                        break; 
+                    }
+                }
+                if(f) return true;
+            }
+            return false;
+    }
+};
