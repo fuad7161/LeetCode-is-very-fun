@@ -1,0 +1,22 @@
+class Solution {
+    string modifide(string s,int from,int num){
+         string sub = "",fine = "";
+        if(from!=1){
+            sub += s.substr(0,num);
+            fine += s.substr(num,s.size()-num);
+        }else{
+            sub += s.substr(0,s.size()-num);
+            fine += s.substr(s.size()-num,num);
+        }
+        return fine+sub;
+    }
+public:
+    string stringShift(string s, vector<vector<int>>& shift) {
+        for(vector<int>pp: shift){
+            s = modifide(s,pp[0],pp[1]);
+            //cout<<s<<endl;
+            //cout<<pp[0]<<" "<<pp[1]<<endl;
+        }
+        return s;
+    }
+};
