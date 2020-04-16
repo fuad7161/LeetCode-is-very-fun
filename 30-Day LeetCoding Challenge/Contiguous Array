@@ -1,0 +1,30 @@
+class Solution {
+public:
+    int findMaxLength(vector<int>& v) {
+        int n = v.size();
+        for(int i=0;i<n;i++){
+            if(v[i]==0) v[i] = -1;
+        }
+        int ans=0;
+        
+        vector<int>prof;
+        prof.push_back(0);
+        for(int x: v){
+            prof.push_back(prof.back()+x);
+        }
+        
+        unordered_map<int,int>first_oc;
+        for(int i=0;i<(int)prof.size();i++){
+            int x = prof[i];
+            auto it = first_oc.find(x);
+            if(it != first_oc.end()){
+                ans = max(ans,i- first_oc[x]);
+                cout<<i<<" "<<first_oc[x]<<" ";
+            }else {
+                first_oc[x] = i;
+            }
+        }cout<<endl;
+        
+        return ans;
+    }
+};
